@@ -35,17 +35,33 @@
   font-weight: bold;
   font-size: .8rem;
   padding: 6px 16px;
-  transition: 10ms ease all;
+  transition: .3s ease all;
 }
 .twitter-card-botton.isfollowing{
   border: 1px solid blueviolet;
+  width: 130px;
 }
+
+.twitter-card-stopIsFollowing{
+  display: none;
+}
+
 .twitter-card-botton:hover {
   color: #fff;
   background-color: rgb(42, 247, 151);
 }
 
 .twitter-card-botton.isfollowing:hover{
-  border: 1px solid rgb(226, 95, 43);
-  background-color: rgb(197, 55, 55);
+  border: 1px solid rgba(226, 95, 43, 0.555);
+  color: rgb(226, 95, 43);
+  background-color: transparent;
+  opacity: .8;
+
+}
+
+.twitter-card-botton.isfollowing:hover .twitter-card-stopIsFollowing{
+  display: block;
+}
+.twitter-card-botton.isfollowing:hover .twitter-card-textNone{
+  display: none;
 }
