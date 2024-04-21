@@ -1,24 +1,10 @@
-import { Children, useState } from 'react'
+import { useState } from 'react'
 import confetti from 'canvas-confetti'
 import { TURNS } from './constantes'
 import { checkWinner,checkEndGame } from './logic/logica'
 import { saveGameStorage, resetGameStorage } from './logic/storage'
-
-
-const Square = ({children,updatePoints, index,isSelected}) =>{
-
-   const className = `square ${isSelected ? 'is-selected' : ''}`
-
-  const handlerClick = ()=>{
-    updatePoints(index);
-  }
-
-  return(
-    <div className={className} onClick={handlerClick}>
-      {children}
-    </div>
-  );
-}
+import { Square } from './componentes/Square'
+import { WinnerModal } from './componentes/WinnerModal'
 
 
 
@@ -111,23 +97,7 @@ function App() {
           </Square>
         </section>
         {
-          isWinner !=  null && (
-            <section  className='winner'>
-              <div className='text'>
-                <h2>
-                  {
-                    isWinner === false ? 'Empate' : 'Gano: '
-                  }
-                </h2>
-                <header className='win'>
-                  {isWinner && <Square>{isWinner}</Square> }
-                </header>
-                <footer>
-                  <button onClick={resetGame} >Reiniciar Juego</button>
-                </footer>
-              </div>
-            </section>
-          )
+          <WinnerModal resetGame={resetGame}  isWinner={isWinner}  />
         }
       </main>
     </>
