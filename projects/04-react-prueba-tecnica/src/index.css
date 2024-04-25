@@ -1,0 +1,29 @@
+body{
+  margin: 0;
+  display: flex;
+  place-content: center;
+  background-color: #222;
+
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: system-ui;
+  gap: 20px;
+  color: #fff;
+}
+
+
+button{
+  padding: 6px 10px;
+  border: none;
+  border-radius: 10px;
+  width: 120px;
+  background-color: rgb(7, 255, 255);
+  color: #532828;
+  cursor: pointer;
+}
