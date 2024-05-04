@@ -1,37 +1,34 @@
-import { useState,useEffect } from 'react'
-import './App.css'
+import './App.css';
+import { useCatImage } from './hooks/useCatImage';
+import { useCatFact } from './hooks/useCatFact';
 
-const API_URI = "https://catfact.ninja/fact";
+
+
 
 function App() {
-  const [fact , setFact] = useState('');
-  const [urlImg, setUrlImg] = useState('');
-  const [keyWord,setKeyWord] =useState('');
-  const [imgFact,setImgFact] =useState(false);
+  const { fact , refrehsImgCat } = useCatFact();
+  const { urlImg , keyWord } = useCatImage({ fact });
 
-  useEffect(()=>{
-    fetch(API_URI)
-    .then(response => response.json())
-    .then(data =>{
-      const {fact} = data;
-      setFact(fact);
-      const threeFirstWords = fact.split(' ',3).join(' ');
-      setUrlImg(`https://cataas.com/cat/says/${threeFirstWords}`)
-      setKeyWord(threeFirstWords)
-    })
-  },[imgFact]);
-
+  
+  const handleClick = () => {
+    refrehsImgCat();
+  };
 
   return (
     <>
       <main>
         <h1>Prueba tecnica de React Junior</h1>
         {fact && <p>{fact}</p>}
-        { urlImg && <img src={urlImg} alt={`photo random cat using api wiht this keyword "${keyWord}"`} />}
-        <button onClick={()=> setImgFact(!imgFact)} >Cambiar imagen</button>
+        {urlImg && ( 
+          <img 
+            src={urlImg} 
+            alt={`photo random cat using api wiht this keyword "${keyWord}"`}
+          />
+        )}
+        <button onClick={handleClick} >Cambiar imagen</button>
       </main>
     </>
   )
 }
 
-export default App
+export default App;
